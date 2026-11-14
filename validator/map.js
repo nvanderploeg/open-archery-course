@@ -197,7 +197,7 @@ export function createMapView(el, { onPick }) {
   }
 
   function photoLayer(doc, key, urls) {
-    const photos = doc.extensions?.['org.openarchery.photos']?.photos;
+    const photos = doc.extensions?.['oac.photos']?.photos;
     if (!Array.isArray(photos)) return null;
     const entry = doc.courses.find((c) => c.key === key);
     const group = L.layerGroup();
@@ -211,7 +211,7 @@ export function createMapView(el, { onPick }) {
       const rotate = typeof ph.bearingDeg === 'number' ? `style="--bearing:${ph.bearingDeg}deg"` : '';
       L.marker(latlng(at), { icon: icon(`<span class="photo" ${rotate}></span>`, 22), zIndexOffset: 300 })
         .bindPopup(`<figure class="photo-pop">${img}<figcaption>${caption}</figcaption></figure>`, { maxWidth: 280 })
-        .on('click', () => onPick(`/extensions/org.openarchery.photos/photos/${i}`))
+        .on('click', () => onPick(`/extensions/oac.photos/photos/${i}`))
         .addTo(group);
     });
     return group;

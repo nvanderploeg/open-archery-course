@@ -234,7 +234,7 @@ function renderMeta(entry, doc) {
     entry.license && escapeHtml(entry.license),
     c.publisher?.name && escapeHtml(c.publisher.name),
   ].filter(Boolean);
-  const tiles = doc.extensions?.['org.openarchery.tiles'] ? '<p class="muted small">This package has a tiled map (org.openarchery.tiles). The validator does not draw tiles, so it shows the raster fallback.</p>' : '';
+  const tiles = doc.extensions?.['oac.tiles'] ? '<p class="muted small">This package has a tiled map (oac.tiles). The validator does not draw tiles, so it shows the raster fallback.</p>' : '';
   els.meta.innerHTML = `<p class="facts">${facts.join(' · ')}</p><div class="chips">${chips}</div>${tiles}`;
 }
 

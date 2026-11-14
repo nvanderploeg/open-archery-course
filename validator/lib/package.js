@@ -1,7 +1,7 @@
 import { unsafeHref } from './rules.js';
 import { distanceM } from './geo.js';
 
-export const MIMETYPE = 'application/vnd.openarchery.course+zip';
+export const MIMETYPE = 'application/vnd.oac+zip';
 export const SIZE_LIMIT = 25 * 1024 * 1024;
 
 const VECTOR_KINDS = ['trail', 'road', 'water', 'building', 'boundary', 'contour', 'vegetation', 'hazard', 'label', 'other'];
@@ -72,11 +72,11 @@ export function referencedFiles(doc) {
   const refs = [];
   if (doc.map?.raster?.href) refs.push(['/map/raster/href', doc.map.raster.href, 'raster']);
   if (doc.map?.vector?.href) refs.push(['/map/vector/href', doc.map.vector.href, 'vector']);
-  const tiles = doc.extensions?.['org.openarchery.tiles'];
-  if (typeof tiles?.href === 'string') refs.push(['/extensions/org.openarchery.tiles/href', tiles.href, 'tiles']);
-  const photos = doc.extensions?.['org.openarchery.photos']?.photos;
+  const tiles = doc.extensions?.['oac.tiles'];
+  if (typeof tiles?.href === 'string') refs.push(['/extensions/oac.tiles/href', tiles.href, 'tiles']);
+  const photos = doc.extensions?.['oac.photos']?.photos;
   if (Array.isArray(photos))
-    photos.forEach((p, i) => typeof p?.href === 'string' && refs.push([`/extensions/org.openarchery.photos/photos/${i}/href`, p.href, 'photo']));
+    photos.forEach((p, i) => typeof p?.href === 'string' && refs.push([`/extensions/oac.photos/photos/${i}/href`, p.href, 'photo']));
   return refs;
 }
 
@@ -111,7 +111,7 @@ export async function checkAssets(pkg, doc) {
     if (purpose === 'vector') ({ vector } = checkVector(bytes, path, doc, add));
   }
 
-  for (const [path, layer] of [['/map/raster/sha256', doc.map?.raster], ['/map/vector/sha256', doc.map?.vector], ['/extensions/org.openarchery.tiles/sha256', doc.extensions?.['org.openarchery.tiles']]]) {
+  for (const [path, layer] of [['/map/raster/sha256', doc.map?.raster], ['/map/vector/sha256', doc.map?.vector], ['/extensions/oac.tiles/sha256', doc.extensions?.['oac.tiles']]]) {
     const bytes = layer?.sha256 && typeof layer.href === 'string' && pkg.files.get(layer.href);
     if (!bytes) continue;
     const actual = await sha256(bytes);

@@ -53,11 +53,11 @@ dictionary covers results only. The nearest formats are borrowed from, not adopt
 ## 2. Package
 
 A package is a zip file with the extension `.oac` ("Open Archery Course") and the
-media type `application/vnd.openarchery.course+zip`.
+media type `application/vnd.oac+zip`.
 
 ```
 pine-ridge.oac
-├── mimetype          first entry, stored uncompressed: application/vnd.openarchery.course+zip
+├── mimetype          first entry, stored uncompressed: application/vnd.oac+zip
 ├── course.json       required
 ├── raster.png        optional base image (PNG or JPEG)
 ├── vector.geojson    optional base vectors
@@ -361,22 +361,24 @@ rejects a package only when `course.json` fails the schema.
 - Anything not in this spec goes under `extensions["<reverse-domain>"]` in
   `course.json`, and its files under `extensions/<reverse-domain>/`. A writer uses a
   namespace from a domain it controls, such as `com.example`.
+- The `oac.` prefix is reserved for extensions defined by this spec (§12). Writers
+  MUST NOT invent other `oac.*` names; a reader SHOULD warn on one it does not know.
 - A reader that doesn't know an extension still draws the course from the core
   layers.
 
 ## 12. Defined extensions
 
-These extensions use the `org.openarchery` namespace so every reader handles them
-the same way.
+These extensions use the reserved `oac.` prefix so every reader handles them the
+same way. The prefix belongs to this spec, not to a domain.
 
-### 12.1 `org.openarchery.tiles`: tiled base map
+### 12.1 `oac.tiles`: tiled base map
 
 A package-level extension for venues too big for one image.
 
 ```json
 "extensions": {
-  "org.openarchery.tiles": {
-    "href": "extensions/org.openarchery.tiles/map.pmtiles",
+  "oac.tiles": {
+    "href": "extensions/oac.tiles/map.pmtiles",
     "format": "pmtiles",
     "sha256": "…",
     "minZoom": 14,
@@ -392,15 +394,15 @@ A package-level extension for venues too big for one image.
 - A reader that understands it draws it in place of `map.raster`, in the same slot.
   Writers SHOULD still include a low-resolution raster as a fallback.
 
-### 12.2 `org.openarchery.photos`: station photos
+### 12.2 `oac.photos`: station photos
 
 A package-level extension. Each photo names its course.
 
 ```json
 "extensions": {
-  "org.openarchery.photos": {
+  "oac.photos": {
     "photos": [
-      { "href": "extensions/org.openarchery.photos/s7-stake-red.jpg",
+      { "href": "extensions/oac.photos/s7-stake-red.jpg",
         "course": "3d", "station": 7, "of": "p7r", "caption": "View from red stake",
         "point": { "lat": 44.1006, "lon": -79.5005 }, "bearingDeg": 52 }
     ]
@@ -435,8 +437,10 @@ The format is built to make these conversions cheap:
 
 ## 15. Open questions
 
-- Whether the spec moves to a neutral organisation. The schema `$id` under
-  `openarchery.org` is an identifier, not yet a resolvable URL.
+- Whether the spec moves to a neutral organisation. The schema `$id` resolves on
+  this repository's GitHub Pages site; if the spec moves, the `$id` moves with it in
+  a new major or minor version.
+- Registering `application/vnd.oac+zip` with IANA.
 
 Comments and proposals are welcome as issues on this repository.
 

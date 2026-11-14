@@ -27,8 +27,9 @@ export function checkRules(doc) {
 
   checkRaster(doc.map?.raster, add);
   for (const [layer, spec] of Object.entries(doc.map ?? {})) checkHref(spec.href, `/map/${layer}/href`, add);
-  checkTiles(doc.extensions?.['org.openarchery.tiles'], add);
+  checkTiles(doc.extensions?.['oac.tiles'], add);
   checkPhotos(doc, add);
+  for (const name of Object.keys(doc.extensions ?? {})) checkReservedPrefix(name, '/extensions', add);
   return issues;
 }
 
@@ -162,7 +163,7 @@ function checkHref(href, path, add) {
 
 function checkTiles(tiles, add) {
   if (!tiles) return;
-  const at = '/extensions/org.openarchery.tiles';
+  const at = '/extensions/oac.tiles';
   if (typeof tiles.href !== 'string') add('warning', 'tiles-href', `${at}/href`, 'Tiles need an href.');
   else checkHref(tiles.href, `${at}/href`, add);
   if (!['pmtiles', 'mbtiles'].includes(tiles.format))
@@ -172,9 +173,9 @@ function checkTiles(tiles, add) {
 }
 
 function checkPhotos(doc, add) {
-  const ext = doc.extensions?.['org.openarchery.photos'];
+  const ext = doc.extensions?.['oac.photos'];
   if (!ext) return;
-  const at = '/extensions/org.openarchery.photos';
+  const at = '/extensions/oac.photos';
   if (!Array.isArray(ext.photos)) return add('warning', 'photos-list', `${at}/photos`, 'Expected a photos array.');
   const courses = new Map(doc.courses.map((c) => [c.key, c.course]));
   ext.photos.forEach((ph, i) => {
@@ -195,8 +196,18 @@ function checkPhotos(doc, add) {
   });
 }
 
+const SPEC_EXTENSIONS = new Set(['oac.tiles', 'oac.photos']);
+
 function checkCourseExtensions(ext, at, add) {
-  for (const name of Object.keys(ext ?? {}))
-    if (name === 'org.openarchery.tiles' || name === 'org.openarchery.photos')
+  for (const name of Object.keys(ext ?? {})) {
+    if (SPEC_EXTENSIONS.has(name))
       add('warning', 'extension-level', `${at}/${name}`, `${name} is a package-level extension; readers will not look for it here.`);
+    else checkReservedPrefix(name, at, add);
+  }
+}
+
+/** SPEC §11: the `oac.` prefix is reserved for the extensions in §12. */
+function checkReservedPrefix(name, at, add) {
+  if (name.startsWith('oac.') && !SPEC_EXTENSIONS.has(name))
+    add('warning', 'extension-reserved', `${at}/${name}`, `"oac." is reserved for extensions defined by the spec; ${name} is not one of them.`);
 }

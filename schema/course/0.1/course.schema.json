@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://openarchery.org/schema/course/0.1/course.schema.json",
+  "$id": "https://nvanderploeg.github.io/open-archery-course/schema/course/0.1/course.schema.json",
   "title": "Open Archery Course package: course.json",
   "type": "object",
   "required": ["format", "formatVersion", "courses"],

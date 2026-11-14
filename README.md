@@ -10,7 +10,7 @@ Field course on the same ground, say) over one georeferenced map:
 
 ```
 pine-ridge.oac
-├── mimetype          application/vnd.openarchery.course+zip, stored first
+├── mimetype          application/vnd.oac+zip, stored first
 ├── course.json       the venue, its map, and one entry per course
 ├── raster.png        optional base image, placed by three corners
 ├── vector.geojson    optional base vectors (trails, water, buildings)

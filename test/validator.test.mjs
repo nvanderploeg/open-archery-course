@@ -167,10 +167,11 @@ const ruleCases = {
   'raster-mirrored': (d) =>
     (d.map = { raster: { href: 'r.png', corners: { topLeft: { lat: 44.102, lon: -79.503 }, topRight: { lat: 44.099, lon: -79.503 }, bottomLeft: { lat: 44.102, lon: -79.498 } } } }),
   'href-unsafe': (d) => (d.map = { vector: { href: '../outside.geojson' } }),
-  'photo-of': (d) => (d.extensions = { 'org.openarchery.photos': { photos: [{ href: 'extensions/org.openarchery.photos/a.jpg', course: 'field', station: 1, of: 'nope' }] } }),
-  'photo-station': (d) => (d.extensions = { 'org.openarchery.photos': { photos: [{ href: 'extensions/org.openarchery.photos/a.jpg', course: 'field', station: 7 }] } }),
-  'tiles-format': (d) => (d.extensions = { 'org.openarchery.tiles': { href: 'extensions/org.openarchery.tiles/map.pmtiles', format: 'xyz' } }),
-  'extension-level': (d) => (d.courses[0].extensions = { 'org.openarchery.tiles': { href: 'x.pmtiles', format: 'pmtiles' } }),
+  'photo-of': (d) => (d.extensions = { 'oac.photos': { photos: [{ href: 'extensions/oac.photos/a.jpg', course: 'field', station: 1, of: 'nope' }] } }),
+  'photo-station': (d) => (d.extensions = { 'oac.photos': { photos: [{ href: 'extensions/oac.photos/a.jpg', course: 'field', station: 7 }] } }),
+  'tiles-format': (d) => (d.extensions = { 'oac.tiles': { href: 'extensions/oac.tiles/map.pmtiles', format: 'xyz' } }),
+  'extension-level': (d) => (d.courses[0].extensions = { 'oac.tiles': { href: 'x.pmtiles', format: 'pmtiles' } }),
+  'extension-reserved': (d) => (d.extensions = { 'oac.weather': {} }),
 };
 
 for (const [code, mutate] of Object.entries(ruleCases)) {

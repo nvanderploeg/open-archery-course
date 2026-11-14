@@ -786,10 +786,10 @@
     }
   },
   "extensions": {
-    "org.openarchery.photos": {
+    "oac.photos": {
       "photos": [
         {
-          "href": "extensions/org.openarchery.photos/s2-stake-red.jpg",
+          "href": "extensions/oac.photos/s2-stake-red.jpg",
           "course": "3d",
           "station": 2,
           "of": "p2r",
