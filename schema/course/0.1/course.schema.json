@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openarchery.org/schema/course/0.1/course.schema.json",
+  "title": "Open Archery Course package: course.json",
+  "type": "object",
+  "required": ["format", "formatVersion", "courses"],
+  "properties": {
+    "format": {"const": "open-archery-course"},
+    "formatVersion": {"type": "string", "pattern": "^0\\.[0-9]+$"},
+    "generator": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {"name": {"type": "string"}, "version": {"type": "string"}}
+    },
+    "venue": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {"name": {"type": "string", "minLength": 1}, "description": {"type": "string"}}
+    },
+    "courses": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/CourseEntry"}},
+    "map": {
+      "type": "object",
+      "properties": {"raster": {"$ref": "#/$defs/RasterLayer"}, "vector": {"$ref": "#/$defs/VectorLayer"}},
+      "additionalProperties": false
+    },
+    "extensions": {"$ref": "#/$defs/Extensions"}
+  },
+  "$defs": {
+    "Extensions": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z0-9-]+(\\.[a-z0-9-]+)+$"},
+      "additionalProperties": {"type": "object"}
+    },
+    "Point": {
+      "type": "object",
+      "required": ["lat", "lon"],
+      "properties": {
+        "lat": {"type": "number", "minimum": -90, "maximum": 90},
+        "lon": {"type": "number", "minimum": -180, "maximum": 180},
+        "eleM": {"type": "number"},
+        "accM": {"type": "number", "minimum": 0},
+        "src": {"enum": ["gps", "map", "manual"]}
+      }
+    },
+    "LatLon": {
+      "type": "object",
+      "required": ["lat", "lon"],
+      "properties": {
+        "lat": {"type": "number", "minimum": -90, "maximum": 90},
+        "lon": {"type": "number", "minimum": -180, "maximum": 180}
+      },
+      "additionalProperties": false
+    },
+    "RasterLayer": {
+      "type": "object",
+      "required": ["href", "corners"],
+      "properties": {
+        "href": {"type": "string", "pattern": "^[^/][^:]*\\.(png|jpg|jpeg)$"},
+        "corners": {
+          "type": "object",
+          "required": ["topLeft", "topRight", "bottomLeft"],
+          "properties": {
+            "topLeft": {"$ref": "#/$defs/LatLon"},
+            "topRight": {"$ref": "#/$defs/LatLon"},
+            "bottomLeft": {"$ref": "#/$defs/LatLon"},
+            "bottomRight": {"$ref": "#/$defs/LatLon"}
+          },
+          "additionalProperties": false
+        },
+        "opacity": {"type": "number", "minimum": 0, "maximum": 1, "default": 1},
+        "attribution": {"type": "string"},
+        "license": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "VectorLayer": {
+      "type": "object",
+      "required": ["href"],
+      "properties": {
+        "href": {"type": "string", "pattern": "^[^/][^:]*\\.geojson$"},
+        "attribution": {"type": "string"},
+        "license": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "Ruleset": {
+      "enum": ["wa-field", "wa-3d", "nfaa-field", "nfaa-3d", "ifaa-field", "ifaa-3d", "asa-3d", "ibo-3d"]
+    },
+    "PegColour": {"enum": ["white", "red", "yellow", "blue", "black", "green", "orange", "pink"]},
+    "LegendEntry": {
+      "type": "object",
+      "required": ["colour", "label", "marked"],
+      "properties": {
+        "colour": {"$ref": "#/$defs/PegColour"},
+        "label": {"type": "string"},
+        "round": {"enum": ["field", "hunter", "animal", "3d", "international", "lake_of_woods"]},
+        "maxYd": {"type": "number", "exclusiveMinimum": 0},
+        "marked": {"type": "boolean"}
+      }
+    },
+    "Butt": {
+      "type": "object",
+      "required": ["id", "point"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "point": {"$ref": "#/$defs/Point"},
+        "face": {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": ["sizeCm"],
+              "properties": {"sizeCm": {"enum": [20, 35, 40, 50, 60, 65, 80]}},
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "required": ["group"],
+              "properties": {"group": {"enum": [1, 2, 3, 4]}},
+              "additionalProperties": false
+            }
+          ]
+        },
+        "label": {"type": "string"}
+      }
+    },
+    "Position": {
+      "type": "object",
+      "required": ["id", "point", "colours"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "point": {"$ref": "#/$defs/Point"},
+        "colours": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/PegColour"},
+          "minItems": 1,
+          "maxItems": 2,
+          "uniqueItems": true
+        },
+        "distance": {
+          "type": "object",
+          "required": ["value", "unit"],
+          "properties": {"value": {"type": "number", "exclusiveMinimum": 0}, "unit": {"enum": ["yd", "ft", "m"]}},
+          "additionalProperties": false
+        },
+        "shoots": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+        "note": {"type": "string"}
+      }
+    },
+    "Station": {
+      "type": "object",
+      "required": ["number", "butts", "positions"],
+      "properties": {
+        "number": {"type": "integer", "minimum": 1},
+        "note": {"type": "string"},
+        "butts": {"type": "array", "items": {"$ref": "#/$defs/Butt"}, "minItems": 1},
+        "positions": {"type": "array", "items": {"$ref": "#/$defs/Position"}, "minItems": 1}
+      }
+    },
+    "WalkwayEnd": {"oneOf": [{"const": "base"}, {"type": "integer", "minimum": 1}]},
+    "Walkway": {
+      "type": "object",
+      "required": ["from", "to", "path"],
+      "properties": {
+        "from": {"$ref": "#/$defs/WalkwayEnd"},
+        "to": {"$ref": "#/$defs/WalkwayEnd"},
+        "path": {"type": "array", "items": {"$ref": "#/$defs/Point"}, "minItems": 2},
+        "waypoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["point", "note"],
+            "properties": {"point": {"$ref": "#/$defs/Point"}, "note": {"type": "string"}}
+          },
+          "default": []
+        }
+      }
+    },
+    "Poi": {
+      "type": "object",
+      "required": ["kind", "point"],
+      "properties": {
+        "kind": {"enum": ["parking", "toilet", "water", "shelter", "first_aid", "practice", "other"]},
+        "point": {"$ref": "#/$defs/Point"},
+        "label": {"type": "string"}
+      }
+    },
+    "Course": {
+      "type": "object",
+      "required": ["name", "venue", "ruleset", "base", "legend", "stations"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "description": {"type": "string"},
+        "venue": {"type": "string"},
+        "ruleset": {"$ref": "#/$defs/Ruleset"},
+        "region": {"type": "string"},
+        "publisher": {
+          "type": "object",
+          "required": ["name"],
+          "properties": {"name": {"type": "string"}, "id": {"type": "string"}}
+        },
+        "base": {"$ref": "#/$defs/Point"},
+        "legend": {"type": "array", "items": {"$ref": "#/$defs/LegendEntry"}, "minItems": 1},
+        "stations": {"type": "array", "items": {"$ref": "#/$defs/Station"}, "minItems": 1},
+        "walkways": {"type": "array", "items": {"$ref": "#/$defs/Walkway"}, "default": []},
+        "pois": {"type": "array", "items": {"$ref": "#/$defs/Poi"}, "default": []}
+      }
+    },
+    "CourseEntry": {
+      "type": "object",
+      "required": ["key", "course"],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$",
+          "description": "Package-local id, unique within the package"
+        },
+        "revision": {
+          "type": "object",
+          "properties": {"id": {"type": "string"}, "publishedAt": {"type": "string", "format": "date-time"}}
+        },
+        "license": {"type": "string", "description": "SPDX id for this course's data"},
+        "course": {"$ref": "#/$defs/Course"},
+        "extensions": {"$ref": "#/$defs/Extensions"}
+      }
+    }
+  }
+}

@@ -1,0 +1,808 @@
+{
+  "format": "open-archery-course",
+  "formatVersion": "0.1",
+  "generator": {
+    "name": "Skadis Edge",
+    "version": "1.0.0"
+  },
+  "venue": {
+    "name": "Pine Ridge Archers range",
+    "description": "Mixed hardwood ridge with a creek. Example data, not a real venue."
+  },
+  "courses": [
+    {
+      "key": "3d",
+      "revision": {
+        "id": "r3",
+        "publishedAt": "2026-11-14T19:00:00Z"
+      },
+      "license": "CC-BY-4.0",
+      "course": {
+        "name": "Pine Ridge 3D",
+        "venue": "Pine Ridge Archers range",
+        "ruleset": "ibo-3d",
+        "region": "Ontario, CA",
+        "publisher": {
+          "name": "Pine Ridge Archers"
+        },
+        "base": {
+          "lat": 44.10021,
+          "lon": -79.5011,
+          "src": "gps"
+        },
+        "legend": [
+          {
+            "colour": "red",
+            "label": "Hunter, 40 yd max",
+            "maxYd": 40,
+            "marked": false
+          },
+          {
+            "colour": "yellow",
+            "label": "Youth, 35 yd max",
+            "maxYd": 35,
+            "marked": false
+          }
+        ],
+        "stations": [
+          {
+            "number": 1,
+            "butts": [
+              {
+                "id": "b1",
+                "point": {
+                  "lat": 44.1009,
+                  "lon": -79.5002,
+                  "eleM": 251.4,
+                  "accM": 3,
+                  "src": "gps"
+                },
+                "label": "bear"
+              }
+            ],
+            "positions": [
+              {
+                "id": "p1r",
+                "point": {
+                  "lat": 44.10062,
+                  "lon": -79.50051,
+                  "eleM": 247.9,
+                  "src": "gps"
+                },
+                "colours": [
+                  "red"
+                ]
+              },
+              {
+                "id": "p1y",
+                "point": {
+                  "lat": 44.1007,
+                  "lon": -79.50043,
+                  "src": "gps"
+                },
+                "colours": [
+                  "yellow"
+                ],
+                "note": "kneel"
+              }
+            ]
+          },
+          {
+            "number": 2,
+            "butts": [
+              {
+                "id": "b2",
+                "point": {
+                  "lat": 44.101379,
+                  "lon": -79.499222,
+                  "eleM": 258.2,
+                  "accM": 3,
+                  "src": "gps"
+                },
+                "label": "turkey"
+              }
+            ],
+            "positions": [
+              {
+                "id": "p2r",
+                "point": {
+                  "lat": 44.101199,
+                  "lon": -79.499535,
+                  "eleM": 255.0,
+                  "src": "gps"
+                },
+                "colours": [
+                  "red"
+                ]
+              },
+              {
+                "id": "p2y",
+                "point": {
+                  "lat": 44.101253,
+                  "lon": -79.499434,
+                  "src": "gps"
+                },
+                "colours": [
+                  "yellow"
+                ]
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "butts": [
+              {
+                "id": "b3",
+                "point": {
+                  "lat": 44.10075,
+                  "lon": -79.49847,
+                  "eleM": 249.0,
+                  "accM": 3,
+                  "src": "gps"
+                },
+                "label": "elk"
+              }
+            ],
+            "positions": [
+              {
+                "id": "p3r",
+                "point": {
+                  "lat": 44.101019,
+                  "lon": -79.498721,
+                  "eleM": 253.6,
+                  "src": "gps"
+                },
+                "colours": [
+                  "red"
+                ]
+              },
+              {
+                "id": "p3y",
+                "point": {
+                  "lat": 44.100947,
+                  "lon": -79.498645,
+                  "src": "gps"
+                },
+                "colours": [
+                  "yellow"
+                ]
+              }
+            ],
+            "note": "Uphill shot across the creek"
+          },
+          {
+            "number": 4,
+            "butts": [
+              {
+                "id": "b4",
+                "point": {
+                  "lat": 44.09967,
+                  "lon": -79.498971,
+                  "eleM": 244.1,
+                  "accM": 3,
+                  "src": "gps"
+                },
+                "label": "boar"
+              }
+            ],
+            "positions": [
+              {
+                "id": "p4r",
+                "point": {
+                  "lat": 44.09994,
+                  "lon": -79.498721,
+                  "eleM": 246.0,
+                  "src": "gps"
+                },
+                "colours": [
+                  "red"
+                ]
+              },
+              {
+                "id": "p4y",
+                "point": {
+                  "lat": 44.099868,
+                  "lon": -79.498796,
+                  "src": "gps"
+                },
+                "colours": [
+                  "yellow"
+                ]
+              }
+            ]
+          },
+          {
+            "number": 5,
+            "butts": [
+              {
+                "id": "b5",
+                "point": {
+                  "lat": 44.099401,
+                  "lon": -79.500599,
+                  "accM": 3,
+                  "src": "gps"
+                },
+                "label": "coyote"
+              }
+            ],
+            "positions": [
+              {
+                "id": "p5r",
+                "point": {
+                  "lat": 44.099491,
+                  "lon": -79.500223,
+                  "src": "gps"
+                },
+                "colours": [
+                  "red"
+                ]
+              },
+              {
+                "id": "p5y",
+                "point": {
+                  "lat": 44.099473,
+                  "lon": -79.500324,
+                  "src": "gps"
+                },
+                "colours": [
+                  "yellow"
+                ]
+              }
+            ]
+          }
+        ],
+        "walkways": [
+          {
+            "from": "base",
+            "to": 1,
+            "path": [
+              {
+                "lat": 44.10021,
+                "lon": -79.5011
+              },
+              {
+                "lat": 44.1005,
+                "lon": -79.5007
+              },
+              {
+                "lat": 44.10062,
+                "lon": -79.50051
+              }
+            ],
+            "waypoints": [
+              {
+                "point": {
+                  "lat": 44.1005,
+                  "lon": -79.5007
+                },
+                "note": "creek crossing"
+              }
+            ]
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "path": [
+              {
+                "lat": 44.1009,
+                "lon": -79.5002
+              },
+              {
+                "lat": 44.101109,
+                "lon": -79.49991
+              },
+              {
+                "lat": 44.101199,
+                "lon": -79.499535
+              }
+            ]
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "path": [
+              {
+                "lat": 44.101379,
+                "lon": -79.499222
+              },
+              {
+                "lat": 44.101244,
+                "lon": -79.498908
+              },
+              {
+                "lat": 44.101019,
+                "lon": -79.498721
+              }
+            ]
+          },
+          {
+            "from": 3,
+            "to": 4,
+            "path": [
+              {
+                "lat": 44.10075,
+                "lon": -79.49847
+              },
+              {
+                "lat": 44.100345,
+                "lon": -79.498408
+              },
+              {
+                "lat": 44.09994,
+                "lon": -79.498721
+              }
+            ],
+            "waypoints": [
+              {
+                "point": {
+                  "lat": 44.100345,
+                  "lon": -79.498408
+                },
+                "note": "steep descent, use the rope"
+              }
+            ]
+          },
+          {
+            "from": 4,
+            "to": 5,
+            "path": [
+              {
+                "lat": 44.09967,
+                "lon": -79.498971
+              },
+              {
+                "lat": 44.099536,
+                "lon": -79.499597
+              },
+              {
+                "lat": 44.099491,
+                "lon": -79.500223
+              }
+            ]
+          },
+          {
+            "from": 5,
+            "to": "base",
+            "path": [
+              {
+                "lat": 44.099401,
+                "lon": -79.500599
+              },
+              {
+                "lat": 44.099805,
+                "lon": -79.500975
+              },
+              {
+                "lat": 44.10021,
+                "lon": -79.5011
+              }
+            ]
+          }
+        ],
+        "pois": [
+          {
+            "kind": "parking",
+            "point": {
+              "lat": 44.10001,
+              "lon": -79.5015
+            }
+          },
+          {
+            "kind": "toilet",
+            "point": {
+              "lat": 44.100318,
+              "lon": -79.501275
+            }
+          },
+          {
+            "kind": "practice",
+            "point": {
+              "lat": 44.100408,
+              "lon": -79.501876
+            },
+            "label": "Practice butts"
+          },
+          {
+            "kind": "water",
+            "point": {
+              "lat": 44.100138,
+              "lon": -79.501025
+            },
+            "label": "Clubhouse tap"
+          }
+        ]
+      }
+    },
+    {
+      "key": "wa-field",
+      "revision": {
+        "id": "r1",
+        "publishedAt": "2026-10-02T15:00:00Z"
+      },
+      "license": "CC-BY-4.0",
+      "course": {
+        "name": "Pine Ridge WA Field",
+        "venue": "Pine Ridge Archers range",
+        "ruleset": "wa-field",
+        "region": "Ontario, CA",
+        "publisher": {
+          "name": "Pine Ridge Archers"
+        },
+        "base": {
+          "lat": 44.10021,
+          "lon": -79.5011,
+          "src": "gps"
+        },
+        "legend": [
+          {
+            "colour": "red",
+            "label": "Recurve & compound",
+            "round": "field",
+            "marked": true
+          },
+          {
+            "colour": "blue",
+            "label": "Barebow",
+            "round": "field",
+            "marked": true
+          }
+        ],
+        "stations": [
+          {
+            "number": 1,
+            "butts": [
+              {
+                "id": "b1",
+                "point": {
+                  "lat": 44.1012,
+                  "lon": -79.502,
+                  "src": "gps"
+                },
+                "face": {
+                  "sizeCm": 80
+                }
+              }
+            ],
+            "positions": [
+              {
+                "id": "p1r",
+                "point": {
+                  "lat": 44.1008,
+                  "lon": -79.5024,
+                  "src": "gps"
+                },
+                "colours": [
+                  "red"
+                ],
+                "distance": {
+                  "value": 50,
+                  "unit": "m"
+                }
+              },
+              {
+                "id": "p1b",
+                "point": {
+                  "lat": 44.10095,
+                  "lon": -79.50225,
+                  "src": "gps"
+                },
+                "colours": [
+                  "blue"
+                ],
+                "distance": {
+                  "value": 35,
+                  "unit": "m"
+                }
+              }
+            ]
+          },
+          {
+            "number": 2,
+            "butts": [
+              {
+                "id": "b2",
+                "point": {
+                  "lat": 44.101739,
+                  "lon": -79.50135,
+                  "src": "gps"
+                },
+                "face": {
+                  "sizeCm": 60
+                }
+              }
+            ],
+            "positions": [
+              {
+                "id": "p2r",
+                "point": {
+                  "lat": 44.101559,
+                  "lon": -79.501851,
+                  "src": "gps"
+                },
+                "colours": [
+                  "red"
+                ],
+                "distance": {
+                  "value": 45,
+                  "unit": "m"
+                }
+              },
+              {
+                "id": "p2b",
+                "point": {
+                  "lat": 44.101622,
+                  "lon": -79.501689,
+                  "src": "gps"
+                },
+                "colours": [
+                  "blue"
+                ],
+                "distance": {
+                  "value": 30,
+                  "unit": "m"
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "butts": [
+              {
+                "id": "b3",
+                "point": {
+                  "lat": 44.101649,
+                  "lon": -79.502728,
+                  "src": "gps"
+                },
+                "face": {
+                  "sizeCm": 80
+                }
+              }
+            ],
+            "positions": [
+              {
+                "id": "p3r",
+                "point": {
+                  "lat": 44.101118,
+                  "lon": -79.502603,
+                  "src": "gps"
+                },
+                "colours": [
+                  "red"
+                ],
+                "distance": {
+                  "value": 60,
+                  "unit": "m"
+                }
+              },
+              {
+                "id": "p3b",
+                "point": {
+                  "lat": 44.101292,
+                  "lon": -79.502665,
+                  "src": "gps"
+                },
+                "colours": [
+                  "blue"
+                ],
+                "distance": {
+                  "value": 40,
+                  "unit": "m"
+                }
+              }
+            ]
+          },
+          {
+            "number": 4,
+            "butts": [
+              {
+                "id": "b4",
+                "point": {
+                  "lat": 44.09967,
+                  "lon": -79.502478,
+                  "src": "gps"
+                },
+                "face": {
+                  "sizeCm": 40
+                }
+              }
+            ],
+            "positions": [
+              {
+                "id": "p4r",
+                "point": {
+                  "lat": 44.099895,
+                  "lon": -79.502478,
+                  "src": "gps"
+                },
+                "colours": [
+                  "red"
+                ],
+                "distance": {
+                  "value": 25,
+                  "unit": "m"
+                }
+              },
+              {
+                "id": "p4b",
+                "point": {
+                  "lat": 44.09985,
+                  "lon": -79.502478,
+                  "src": "gps"
+                },
+                "colours": [
+                  "blue"
+                ],
+                "distance": {
+                  "value": 20,
+                  "unit": "m"
+                }
+              }
+            ]
+          }
+        ],
+        "walkways": [
+          {
+            "from": "base",
+            "to": 1,
+            "path": [
+              {
+                "lat": 44.10021,
+                "lon": -79.5011
+              },
+              {
+                "lat": 44.100525,
+                "lon": -79.501789
+              },
+              {
+                "lat": 44.1008,
+                "lon": -79.5024
+              }
+            ]
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "path": [
+              {
+                "lat": 44.1012,
+                "lon": -79.502
+              },
+              {
+                "lat": 44.101424,
+                "lon": -79.501851
+              },
+              {
+                "lat": 44.101559,
+                "lon": -79.501851
+              }
+            ]
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "path": [
+              {
+                "lat": 44.101739,
+                "lon": -79.50135
+              },
+              {
+                "lat": 44.101289,
+                "lon": -79.502227
+              },
+              {
+                "lat": 44.101118,
+                "lon": -79.502603
+              }
+            ]
+          },
+          {
+            "from": 3,
+            "to": 4,
+            "path": [
+              {
+                "lat": 44.101649,
+                "lon": -79.502728
+              },
+              {
+                "lat": 44.10075,
+                "lon": -79.502853
+              },
+              {
+                "lat": 44.10012,
+                "lon": -79.502665
+              },
+              {
+                "lat": 44.099895,
+                "lon": -79.502478
+              }
+            ]
+          },
+          {
+            "from": 4,
+            "to": "base",
+            "path": [
+              {
+                "lat": 44.09967,
+                "lon": -79.502478
+              },
+              {
+                "lat": 44.09985,
+                "lon": -79.501851
+              },
+              {
+                "lat": 44.10021,
+                "lon": -79.5011
+              }
+            ]
+          }
+        ],
+        "pois": [
+          {
+            "kind": "parking",
+            "point": {
+              "lat": 44.10001,
+              "lon": -79.5015
+            }
+          },
+          {
+            "kind": "toilet",
+            "point": {
+              "lat": 44.100318,
+              "lon": -79.501275
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "map": {
+    "raster": {
+      "href": "raster.png",
+      "corners": {
+        "topLeft": {
+          "lat": 44.102,
+          "lon": -79.503
+        },
+        "topRight": {
+          "lat": 44.102,
+          "lon": -79.498
+        },
+        "bottomLeft": {
+          "lat": 44.099,
+          "lon": -79.503
+        }
+      },
+      "opacity": 0.85,
+      "attribution": "Hand-drawn by Pine Ridge Archers",
+      "license": "CC-BY-4.0",
+      "sha256": "704d5a6b78c3c2449c25a239e95b353e7886d6aca9b86af07b268572fe6efe8a"
+    },
+    "vector": {
+      "href": "vector.geojson",
+      "attribution": "Pine Ridge Archers",
+      "license": "CC-BY-4.0",
+      "sha256": "206dbdd2091b0c74eb13741988c9aa2049f160926ebb9308ffcb527a9b2b0a6b"
+    }
+  },
+  "extensions": {
+    "org.openarchery.photos": {
+      "photos": [
+        {
+          "href": "extensions/org.openarchery.photos/s2-stake-red.jpg",
+          "course": "3d",
+          "station": 2,
+          "of": "p2r",
+          "caption": "View from the red stake",
+          "point": {
+            "lat": 44.101199,
+            "lon": -79.499535,
+            "eleM": 255.0,
+            "src": "gps"
+          },
+          "bearingDeg": 51
+        }
+      ]
+    }
+  }
+}

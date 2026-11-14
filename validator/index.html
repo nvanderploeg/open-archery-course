@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OAC Validator</title>
+  <meta name="description" content="Validate and preview Open Archery Course (.oac) packages and course.json files in the browser.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23f2c230'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23d7263d'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%232463c9'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
+        integrity="sha384-c6Rcwz4e4CITMbu/NBmnNS8yN2sC3cUElMEMfP3vqqKFp7GOYaaBBCqmaWBjmkjb" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"
+          integrity="sha384-NElt3Op+9NBMCYaef5HxeJmU4Xeard/Lku8ek6hoPTvYkQPh3zLIrJP7KiRocsxO" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
+          integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.17.1/ajv2020.bundle.min.js"
+          integrity="sha384-kz0rEmUPEGITP2jtssINcPlpx2oqv5B7mCxBMc6J15TQxYhoz2QdB0I974nvL4nI" crossorigin="anonymous"></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="./">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#f2c230"/><circle cx="16" cy="16" r="11" fill="#d7263d"/><circle cx="16" cy="16" r="7" fill="#2463c9"/><circle cx="16" cy="16" r="3" fill="#fff"/></svg>
+      <span><b>Open Archery Course</b><small>Validator · format 0.1 draft</small></span>
+    </a>
+    <nav>
+      <a href="https://github.com/nvanderploeg/open-archery-course/blob/main/SPEC.md">Spec</a>
+      <a href="schema/course/0.1/course.schema.json">Schema</a>
+      <a href="https://github.com/nvanderploeg/open-archery-course">GitHub</a>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="panel" aria-label="Validation">
+      <div class="load">
+        <p class="lede">Check an <code>.oac</code> package or a <code>course.json</code> against the spec and see it on a map. Files never leave your browser.</p>
+        <div class="actions">
+          <label class="btn primary">
+            <input id="file" type="file" accept=".oac,.zip,.json,application/json,application/zip" hidden>
+            Open file…
+          </label>
+          <button id="load-example" class="btn" type="button">Load example</button>
+          <span class="hint">or drop a file anywhere</span>
+        </div>
+        <div id="source" class="source" hidden>
+          <span id="source-name"></span>
+          <button id="close-source" type="button" class="link" aria-label="Close and clear">Clear</button>
+        </div>
+      </div>
+
+      <div id="verdict" class="verdict idle" role="status" aria-live="polite"></div>
+      <ol id="issues" class="issues"></ol>
+
+      <details id="editor-box" class="box" open>
+        <summary>course.json <span class="muted">edit or paste; checks as you type</span></summary>
+        <textarea id="editor" spellcheck="false" autocapitalize="off" autocomplete="off" wrap="off"
+                  placeholder='{ "format": "open-archery-course", "formatVersion": "0.1", "courses": [ … ] }'></textarea>
+      </details>
+
+      <details id="files-box" class="box" hidden>
+        <summary>Package contents</summary>
+        <div id="files"></div>
+      </details>
+    </section>
+
+    <section class="viewer" aria-label="Map preview">
+      <div class="viewer-bar">
+        <label>Course <select id="course" disabled></select></label>
+        <label class="check"><input id="others" type="checkbox" checked disabled> Other courses, faded</label>
+      </div>
+      <div class="map-wrap">
+        <div id="map"></div>
+        <p id="stale" class="stale" hidden>The map shows the last version that passed the schema.</p>
+      </div>
+      <div id="course-meta" class="meta"></div>
+    </section>
+  </main>
+
+  <div id="drop" class="drop" hidden><p>Drop an <code>.oac</code> or <code>course.json</code></p></div>
+</body>
+</html>

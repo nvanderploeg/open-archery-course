@@ -1,0 +1,17 @@
+{
+  "name": "open-archery-course",
+  "private": true,
+  "type": "module",
+  "description": "Open Archery Course (.oac) package format: spec, schema and reference validator",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "pack": "node tools/pack.mjs",
+    "build": "node scripts/build-site.mjs",
+    "serve": "node scripts/build-site.mjs && python3 -m http.server -d _site 8080"
+  },
+  "devDependencies": {
+    "ajv": "8.17.1",
+    "jszip": "3.10.1"
+  }
+}
